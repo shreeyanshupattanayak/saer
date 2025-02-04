@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3D Image Carousel with Music</title>
+    <style>
+        body {
+            background-color: peachpuff;
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            flex-direction: column;
+        }
+
+        .start-container, .diamond-page, .camera-page {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .start-btn, .beautiful-btn, .yes-btn, .no-btn, .acha-btn {
+            padding: 15px 30px;
+            font-size: 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: white;
+            color: black;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .start-btn:hover, .beautiful-btn:hover, .yes-btn:hover, .no-btn:hover, .acha-btn:hover {
+            background-color: gray;
+        }
+
+        .carousel-container, .apology-page, .thank-you-page, .love-page, .apsara-page, .special-message-page, .confirm-no-page, .first-aid-page, .love-injury-page, .map-page, .dil-page, .gold-page, .to-do-page, .diamond-page, .camera-page {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100%;
+            text-align: center;
+            perspective: 1000px;
+        }
+
+        /* Carousel styles */
+        .carousel {
+            width: 300px;
+            height: 300px;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotate 20s infinite linear;
+            background-color: black;
+        }
+        .carousel div {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+        }
+
+        /* Animation for carousel rotation */
+        @keyframes rotate {
+            from { transform: rotateY(0deg); }
+            to { transform: rotateY(360deg); }
+        }
+
+        video {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Start Screen -->
+    <div class="start-container" id="start-screen">
+        <h1>Welcome</h1>
+        <button class="start-btn" onclick="startApp()">Start</button>
+    </div>
+
+    <!-- Carousel Section -->
+    <div class="carousel-container" id="carousel-screen">
+        <audio id="audio" preload="auto">
+            <source src="https://dl.dropboxusercontent.com/scl/fi/w6hbodcw6hqksl1lt2ul4/vlc-record-2025-02-03-16h44m21s-hi.mp3.mp3.mp3?rlkey=xlmxc5p7298v3dijkdrbyge7e&st=lrswf4eu&dl=0" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <div class="carousel">
+            <div style="transform: rotateY(0deg) translateZ(300px); background-image: url('https://dl.dropboxusercontent.com/scl/fi/mwn2le3a5pyndb71haar6/WhatsApp-Image-2025-02-01-at-19.13.56_973518cf.jpg?rlkey=m49flvf819n84v1k226642tix&dl=1');"></div>
+            <div style="transform: rotateY(60deg) translateZ(300px); background-image: url('https://dl.dropboxusercontent.com/scl/fi/fyf3qvt48oyl2ru1mzt1l/IMG-20250201-WA0008.jpg?rlkey=9n6dzo11oiwxoar63002qk6y9&dl=1');"></div>
+            <div style="transform: rotateY(120deg) translateZ(300px); background-image: url('https://dl.dropboxusercontent.com/scl/fi/kynys9i3keun8v1geaupu/sagu.jpg?rlkey=f561ikvlc54dv1xco2mbm7udw&dl=1');"></div>
+            <div style="transform: rotateY(180deg) translateZ(300px); background-image: url('https://dl.dropboxusercontent.com/scl/fi/eexhwk1ke3cwdxz9i38m2/IMG-20250201-WA0006.jpg?rlkey=4pkxvg59ludgx6pou2t2e82wh&dl=1');"></div>
+            <div style="transform: rotateY(240deg) translateZ(300px); background-image: url('https://dl.dropboxusercontent.com/scl/fi/idx8gq58vapl5s5o4wol1/IMG-20250201-WA0012.jpg?rlkey=ucwtm3y2vj0ubdq45srxfnks2&dl=1');"></div>
+            <div style="transform: rotateY(300deg) translateZ(300px); background-image: url('https://dl.dropboxusercontent.com/scl/fi/le563tzwkuneraoimkel6/IMG-20250201-WA0013.jpg?rlkey=ff6b5ytmzhia3zr0tueqomsjh&dl=1');"></div>
+        </div>
+        <button class="beautiful-btn" onclick="showApology()">Ye to bahut khubsurat hai</button>
+    </div>
+
+    <!-- Apology Page -->
+    <div class="apology-page" id="apology-screen">
+        <div class="apology-text">Baby mujhe maaf kar do agar mera sa koi galti hogai hai to aur rude behave kar na kaliye 💖</div>
+        <div>
+            <button class="yes-btn" onclick="showThankYou()">Yes</button>
+            <button class="no-btn" onclick="showConfirmNoPage()">No</button>
+        </div>
+    </div>
+
+    <!-- Thank You Page (After Yes) -->
+    <div class="thank-you-page" id="thank-you-screen">
+        <div class="thank-you-text">Mujhe pata tha tum mujhe maaf kardogi etni cute jo ho 💖</div>
+        <button class="beautiful-btn" onclick="showLovePage()">Mujhe aur bhi dekhna hai</button>
+    </div>
+
+    <!-- Love Page -->
+    <div class="love-page" id="love-screen">
+        <h1>I love you 💖</h1>
+        <button class="beautiful-btn" onclick="showILoveYouToo()">I love you too</button>
+    </div>
+
+    <!-- Apsara Page -->
+    <div class="apsara-page" id="apsara-screen">
+        <div class="apsara-text" style="font-size: 32px;">Aap apsara ho kya?</div>
+        <button class="no-btn" onclick="handleNoClick()">No</button>
+    </div>
+
+    <!-- Swarg Message Page -->
+    <div class="swarg-message-page" id="swarg-message-screen" style="display:none;">
+        <div class="message-text" style="font-size: 30px; padding: 20px; text-align: center;">
+            Aap ne ek din bola tha ki tujhe koi swarg sa giri hui apsar milagi aur aap milgai.<br> Ye baat jab GF nahi thi tab boli thi ye 💖
+        </div>
+        <button class="acha-btn" onclick="handleAchaClick()">Acha!</button>
+    </div>
+
+    <!-- First Aid Page -->
+    <div class="first-aid-page" id="first-aid-screen" style="display:none;">
+        <div class="first-aid-text" style="font-size: 30px; padding: 20px; text-align: center;">Aap ke paas first aid hai kya?</div>
+        <button class="acha-btn" onclick="handleFirstAidResponse()">Kya hua aapko baby?</button>
+    </div>
+
+    <!-- Love Injury Page -->
+    <div class="love-injury-page" id="love-injury-screen" style="display:none;">
+        <div class="love-injury-text" style="font-size: 30px; padding: 20px; text-align: center;">Main aapke pyar pe zakhmi ho gaya 💖</div>
+        <button class="beautiful-btn" onclick="goToDiamondPage()">❤️❤️</button>
+    </div>
+
+    <!-- Diamond Page -->
+    <div class="diamond-page" id="diamond-screen" style="display:none;">
+        <div class="diamond-text" style="font-size: 30px; padding: 20px; text-align: center;">Mera pas ek diamond hai 💎</div>
+        <button class="beautiful-btn" onclick="openCamera()">Mujhe dekh na hai baby</button>
+    </div>
+
+    <!-- Camera Page -->
+    <div class="camera-page" id="camera-screen" style="display:none;">
+        <h1> </h1>
+        <video id="camera" autoplay></video>
+    </div>
+
+    <script>
+        var firstAudio = document.getElementById("audio");
+        var secondAudio = new Audio("https://dl.dropboxusercontent.com/scl/fi/n842pfn4izrxv1jmbtwnk/vlc-record-2025-02-02-20h45m23s-Y21WdVpHVnlYMkZ3YVY5allXTm9aVjg0T1dsV1N6bEpXbVZPV1Y4eE5EUndYMlptZVhRLzg5aVZLOUlaZU5ZX2p1YmVyLVltaUpXeUVPYw_out.mp4.mp3?rlkey=64djl1sm12073ap22apfftfes&st=ygd49700&dl=0");
+
+        function startApp() {
+            document.getElementById("start-screen").style.display = "none";
+            document.getElementById("carousel-screen").style.display = "flex";
+            firstAudio.play();
+            firstAudio.loop = true;
+        }
+
+        function showApology() {
+            document.getElementById("carousel-screen").style.display = "none";
+            document.getElementById("apology-screen").style.display = "flex";
+        }
+
+        function showThankYou() {
+            document.getElementById("apology-screen").style.display = "none";
+            document.getElementById("thank-you-screen").style.display = "flex";
+        }
+
+        function showLovePage() {
+            document.getElementById("thank-you-screen").style.display = "none";
+            document.getElementById("love-screen").style.display = "flex";
+        }
+
+        function showILoveYouToo() {
+            document.getElementById("love-screen").style.display = "none";
+            document.getElementById("apsara-screen").style.display = "flex";
+        }
+
+        function handleNoClick() {
+            document.getElementById("apsara-screen").style.display = "none";
+            document.getElementById("swarg-message-screen").style.display = "flex";
+            firstAudio.pause();
+            secondAudio.play();
+            secondAudio.loop = true;
+        }
+
+        function handleAchaClick() {
+            document.getElementById("swarg-message-screen").style.display = "none";
+            document.getElementById("first-aid-screen").style.display = "flex";
+        }
+
+        function handleFirstAidResponse() {
+            document.getElementById("first-aid-screen").style.display = "none";
+            document.getElementById("love-injury-screen").style.display = "flex";
+        }
+
+        function goToDiamondPage() {
+            document.getElementById("love-injury-screen").style.display = "none";
+            document.getElementById("diamond-screen").style.display = "flex";
+        }
+
+        // Function to open the camera and display the feed
+        function openCamera() {
+            document.getElementById("diamond-screen").style.display = "none"; // Hide the diamond page
+            document.getElementById("camera-screen").style.display = "flex";  // Show the camera page
+
+            // Access the front camera (facing the user)
+            navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } })
+                .then(function (stream) {
+                    // Attach the stream to the video element
+                    var videoElement = document.getElementById("camera");
+                    videoElement.srcObject = stream;
+                })
+                .catch(function (error) {
+                    console.error("Error accessing camera: ", error);
+                    alert("Sorry, we couldn't access your camera.");
+                });
+        }
+    </script>
+</body>
+</html>
